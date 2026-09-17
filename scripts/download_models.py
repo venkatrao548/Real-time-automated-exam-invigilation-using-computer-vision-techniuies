@@ -57,7 +57,7 @@ def main():
 
         if os.path.exists(dest) and os.path.getsize(dest) > 1000000:
             size_mb = os.path.getsize(dest) / (1024 * 1024)
-            print(f"[✓] {info['description']} is already present ({size_mb:.1f} MB).")
+            print(f"[OK] {info['description']} is already present ({size_mb:.1f} MB).")
             continue
 
         print(f"\n[*] Setting up: {info['description']}")
@@ -66,13 +66,13 @@ def main():
             print(f"  Found local file at: {local_match}")
             print(f"  Copying to {dest}...")
             shutil.copy2(local_match, dest)
-            print(f"[✓] Successfully copied from local storage!")
+            print(f"[OK] Successfully copied from local storage!")
             continue
 
         print(f"  Downloading from official repository: {info['url']}")
         try:
             urllib.request.urlretrieve(info["url"], dest, progress_hook)
-            print("\n[✓] Download completed successfully.")
+            print("\n[OK] Download completed successfully.")
         except Exception as err:
             print(f"\n[!] Download failed: {err}")
             print(f"    You can manually place {filename} into {dest}")
